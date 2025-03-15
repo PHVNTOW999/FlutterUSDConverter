@@ -1,4 +1,4 @@
-const List<Map<String, dynamic>> currencyListAPI = [
+[
   {
     "id": 0,
     "name": "KRW",
@@ -14,4 +14,4 @@ const List<Map<String, dynamic>> currencyListAPI = [
     "name": "PLZ",
     "value": 10.3
   }
-];
+]

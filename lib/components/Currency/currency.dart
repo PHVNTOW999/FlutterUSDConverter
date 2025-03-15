@@ -2,19 +2,20 @@ import 'package:flutter/material.dart';
 import 'currency_model.dart';
 
 class Currency extends StatelessWidget {
-
   const Currency({
     super.key,
-    // required this.currencyData
+    required this.currencyData
   });
 
-  // final CurrencyModel currencyData;
+  final CurrencyModel currencyData;
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: Text('ggg'),
+      title: Text(currencyData.name),
+      subtitle: Text('${currencyData.value}'),
     );
   }
+
 
 }
