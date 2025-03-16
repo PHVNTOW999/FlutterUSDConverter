@@ -1,16 +1,21 @@
 import 'package:equatable/equatable.dart';
 
 class CurrencyModel extends Equatable {
-  final int id;
-  final String name;
-  final double value;
+  final String name; // Код валюты (EUR, USD, etc.)
+  final double value; // Курс валюты
 
   const CurrencyModel({
-    required this.id,
     required this.name,
     required this.value,
   });
 
+  factory CurrencyModel.fromJson(String name, double value) {
+    return CurrencyModel(
+      name: name,
+      value: value,
+    );
+  }
+
   @override
-  List<Object> get props => [id, name, value];
+  List<Object?> get props => [name, value];
 }

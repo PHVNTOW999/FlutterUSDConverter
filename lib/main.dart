@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'home_page.dart';
-import 'package:usd_converter/components/CurrencyList/currency_list.dart';
-import 'API/view.dart';
 
 void main() {
   runApp(App());

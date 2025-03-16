@@ -11,6 +11,7 @@ class Currency extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // print(currencyData);
     return ListTile(
       title: Text(currencyData.name),
       subtitle: Text('${currencyData.value}'),

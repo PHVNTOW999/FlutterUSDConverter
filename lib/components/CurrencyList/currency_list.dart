@@ -3,13 +3,12 @@ import 'package:usd_converter/components/Currency/currency_model.dart';
 import '../Currency/currency.dart';
 
 class CurrencyList extends StatelessWidget {
-  CurrencyList({super.key});
+  const CurrencyList({
+    super.key,
+    required this.currencyList,
+  });
 
-  final List<CurrencyModel> currencyList = [
-    CurrencyModel(id: 0, name: 'UAH', value: 12.12),
-    CurrencyModel(id: 1, name: 'KRW', value: 21),
-    CurrencyModel(id: 2, name: 'CAD', value: 2.12),
-  ];
+  final List<CurrencyModel> currencyList;
 
   @override
   Widget build(BuildContext context) {
