@@ -4,7 +4,9 @@ import 'package:usd_converter/components/Currency/currency_model.dart';
 class CurrencyAPI {
   final Dio api;
 
-  final String url = "https://api.freecurrencyapi.com";
+  // set your personal api from https://api.freecurrencyapi.com/
+  final String url =
+      "https://api.freecurrencyapi.com/v1/latest?apikey=fca_live_VN8LsPUSkhDsiSB7Q3aW2H6oY7DFlKh909CprnSX";
 
   CurrencyAPI() : api = Dio();
 

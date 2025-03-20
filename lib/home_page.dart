@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:usd_converter/components/CustomTitle/customTitle.dart';
 import 'components/Currency/currency_model.dart';
 import 'components/CurrencyList/view.dart';
 import 'API/view.dart';
@@ -26,38 +27,53 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       isLoading = true;
     });
-    final data = await api.getCurrencyList();
 
-    setState(() {
-      loadedCurrencyList = data;
-      isLoading = false;
-    });
+    try {
+      final data = await api.getCurrencyList();
+      setState(() {
+        loadedCurrencyList = data;
+      });
+    } catch (e) {
+      print("Error loading data: $e");
+    } finally {
+      setState(() {
+        isLoading = false;
+      });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-          title: Text('USD Converter'),
-        ),
-        body: isLoading
-            ? Center(child: CircularProgressIndicator())
-            : loadedCurrencyList.isEmpty
-                ? Center(child: Text('Error, please check Internet 😢'))
-                : RefreshIndicator(
-                    onRefresh: loadCurrencyList,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        title: Text('USD Converter'),
+      ),
+      body: RefreshIndicator(
+          onRefresh: loadCurrencyList,
+          child: isLoading
+              ? Center(child: CircularProgressIndicator())
+              : loadedCurrencyList.isEmpty
+                  ? ListView(
+                      physics: AlwaysScrollableScrollPhysics(),
                       children: [
-                        Text("1 USD"),
-                        SizedBox(height: 10),
-                        Expanded(
-                            child:
-                                CurrencyList(currencyList: loadedCurrencyList)),
+                        SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.4),
+                        Center(child: Text('Error, please check Internet 😢')),
                       ],
-                    ),
-                )
+                    )
+                  : Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Expanded(
+                              child: CurrencyList(
+                                  currencyList: loadedCurrencyList)),
+                          SizedBox(height: 10),
+                          CustomTitle(),
+                        ],
+                      ),
+                    )),
     );
   }
 }
